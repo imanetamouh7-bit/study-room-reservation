@@ -1,0 +1,864 @@
+\documentclass[10pt,a4paper]{article}
+
+% =========================================================
+% PACKAGES
+% =========================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage[
+left=25mm,
+right=25mm,
+top=20mm,
+bottom=22mm,
+headheight=14pt,
+headsep=10mm,
+footskip=10mm
+]{geometry}
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{setspace}
+
+% =========================================================
+% COLORS
+% =========================================================
+
+\definecolor{THGABlue}{RGB}{35,79,120}
+\definecolor{THGADarkBlue}{RGB}{15,65,110}
+\definecolor{THGARed}{RGB}{205,0,0}
+\definecolor{THGAGreen}{RGB}{75,180,160}
+\definecolor{THGABoxBlue}{RGB}{205,225,245}
+\definecolor{CodeBackground}{RGB}{225,225,225}
+\definecolor{CodeBlue}{RGB}{0,70,130}
+\definecolor{CodeGreen}{RGB}{0,110,60}
+\definecolor{CodeRed}{RGB}{150,0,0}
+
+% =========================================================
+% PAGE STYLE
+% =========================================================
+
+\pagestyle{fancy}
+
+\fancyhf{}
+
+\fancyhead[L]{%
+	\textcolor{THGABlue}{\small\textbf{Databases}}
+}
+
+\fancyhead[R]{%
+	\textcolor{gray}{\small
+		Stephan Bökelmann $\cdot$ Summer Term 2026}
+}
+
+\fancyfoot[L]{%
+	\textcolor{THGARed}{\small sboekelmann@ep1.rub.de}
+}
+
+\fancyfoot[C]{%
+	\textcolor{gray}{\small THGA Bochum}
+}
+
+\fancyfoot[R]{%
+	\textcolor{gray}{\small\thepage}
+}
+
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{%
+	\hbox to\headwidth{%
+		\color{THGABlue}\leaders\hrule height \headrulewidth\hfill
+	}%
+}
+
+\renewcommand{\footrulewidth}{0pt}
+
+% =========================================================
+% SECTION STYLE
+% =========================================================
+
+\titleformat{\section}
+{\large\bfseries\color{THGABlue}}
+{\thesection}
+{0.7em}
+{}
+[\vspace{1mm}\color{THGABlue}\titlerule]
+
+\titleformat{\subsection}
+{\normalsize\bfseries\color{THGABlue}}
+{\thesubsection}
+{0.6em}
+{}
+
+\titlespacing*{\section}
+{0pt}{10pt}{5pt}
+
+\titlespacing*{\subsection}
+{0pt}{7pt}{4pt}
+
+% =========================================================
+% HYPERLINKS
+% =========================================================
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=THGABlue,
+	urlcolor=THGARed,
+	citecolor=THGABlue
+}
+
+% =========================================================
+% LISTINGS
+% =========================================================
+
+\lstset{
+	basicstyle=\ttfamily\scriptsize,
+	backgroundcolor=\color{CodeBackground},
+	frame=none,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	numbersep=7pt,
+	breaklines=true,
+	breakatwhitespace=false,
+	showstringspaces=false,
+	keepspaces=true,
+	columns=fullflexible,
+	tabsize=4
+}
+
+% =========================================================
+% BOXES
+% =========================================================
+
+\newtcolorbox{infobox}{
+	colback=THGABoxBlue,
+	colframe=THGABlue,
+	boxrule=1.2pt,
+	arc=0pt,
+	left=5pt,
+	right=5pt,
+	top=5pt,
+	bottom=5pt
+}
+
+\newtcolorbox{greenbox}{
+	colback=white,
+	colframe=THGAGreen,
+	boxrule=1.2pt,
+	arc=0pt,
+	left=5pt,
+	right=5pt,
+	top=5pt,
+	bottom=5pt
+}
+
+% =========================================================
+% DOCUMENT INFORMATION
+% =========================================================
+
+\title{
+	\textcolor{THGABlue}{
+		\textbf{Term Project -- Documentation}
+	}
+}
+
+\author{}
+\date{}
+
+% =========================================================
+% DOCUMENT
+% =========================================================
+
+\begin{document}
+	
+	% =========================================================
+	% TITLE
+	% =========================================================
+	
+	\thispagestyle{empty}
+	
+	% Dark blue title bar
+	\begin{tcolorbox}[
+		colback=THGADarkBlue,
+		colframe=THGADarkBlue,
+		boxrule=0pt,
+		arc=0pt,
+		left=8pt,
+		right=8pt,
+		top=8pt,
+		bottom=8pt
+		]
+		\centering
+		{\Large\color{white}\textbf{Term Project -- Documentation}}
+	\end{tcolorbox}
+	
+	\vspace{7mm}
+	
+	{\large
+		\textcolor{THGABlue}{
+			\textbf{Study Room Reservation System: a database-backed reservation system}
+		}
+	}
+	
+	\vspace{6mm}
+	
+	\textcolor{THGARed}{\rule{\textwidth}{1.5pt}}
+	
+	\vspace{6mm}
+	
+	\noindent
+	Dozent: Stephan Bökelmann
+	\hspace{5mm}
+	\textcolor{THGARed}{sboekelmann@ep1.rub.de}
+	\hspace{5mm}
+	Technische Hochschule Georg Agricola, Bochum
+	
+	\vspace{7mm}
+	
+	\begin{infobox}
+		
+		\textbf{Author:} Imane Tamouh
+		
+		\textbf{Module:} Introduction to Database Management Systems
+		$\cdot$ THGA Bochum
+		
+		\textbf{Stack:} PostgreSQL $\cdot$ FastAPI $\cdot$
+		Docker Compose $\cdot$ tkinter (.deb)
+		
+		\textbf{Repository:}
+		\textcolor{THGARed}{
+			\texttt{https://github.com//imanetamouh7-bit/study-room-reservation>}
+		}
+		
+	\end{infobox}
+	
+	\vspace{7mm}
+	
+	% =========================================================
+	% TABLE OF CONTENTS
+	% =========================================================
+	
+	{\large\bfseries\textcolor{THGABlue}{Inhaltsverzeichnis}}
+	
+	\vspace{1mm}
+	
+	\textcolor{THGABlue}{\rule{\textwidth}{0.7pt}}
+	
+	\vspace{2mm}
+	
+	\tableofcontents
+	
+	\newpage
+	
+	
+	% =========================================================
+	% 1 INTRODUCTION
+	% =========================================================
+	
+	\section{Introduction and motivation}
+	
+	Students often need a quiet place to study, work on assignments or
+	prepare for examinations. If study rooms are managed manually, it
+	can be difficult to determine which rooms are available and whether
+	a room has already been reserved for a particular period.
+	
+	The Study Room Reservation System replaces manual reservation
+	management with a relational database system. It manages students,
+	study rooms, equipment and reservations, exposes the data through a
+	REST API and provides a small desktop frontend.
+	
+	\begin{greenbox}
+		
+		\textbf{Usage scenario.}
+		A student wants to reserve a study room for an examination
+		preparation session. The student opens the frontend, enters the API
+		URL and the X-API-Key and connects to the backend.
+		
+		The available study rooms are displayed together with their
+		capacity. The student selects a room, enters the date and time and
+		creates the reservation.
+		
+		If the selected room is already reserved for the requested time
+		period, the system rejects the reservation and informs the student
+		that another room or another time period has to be selected.
+		
+	\end{greenbox}
+	
+	
+	% =========================================================
+	% 2 DATA MODEL
+	% =========================================================
+	
+	\section{Data model}
+	
+	The domain has five entity types: students, study rooms, equipment,
+	reservations and the associative entity connecting rooms with
+	equipment.
+	
+	A student can make many reservations over time, while each
+	reservation belongs to one student. A room can be reserved many
+	times over different time periods, while each reservation refers to
+	one room.
+	
+	A room can have many equipment types and an equipment type can occur
+	in many rooms. This is an N:M relationship that is resolved by the
+	\texttt{room\_equipment} relation.
+	
+	\begin{greenbox}
+		
+		\textbf{ER model (textual).}
+		
+		\begin{itemize}[leftmargin=5mm,itemsep=1pt]
+			\item \textit{student} (1) -- makes -- (N) \textit{reservation}
+			\item \textit{room} (1) -- is reserved in -- (N) \textit{reservation}
+			\item \textit{room} (1) -- is assigned -- (N) \textit{room\_equipment}
+			\item \textit{equipment} (1) -- occurs in -- (N) \textit{room\_equipment}
+		\end{itemize}
+		
+		Thus \textit{room} N:M \textit{equipment}, resolved through
+		\textit{room\_equipment}.
+		
+	\end{greenbox}
+	
+	
+	% =========================================================
+	% 2.1 RELATIONAL SCHEMA
+	% =========================================================
+	
+	\subsection{Relational schema}
+	
+	Derived from the ER model, with primary keys underlined and foreign
+	keys in italics:
+	
+	\begin{itemize}[leftmargin=6mm,itemsep=3pt]
+		
+		\item
+		\textit{student}(
+		\underline{student\_id},
+		name,
+		email
+		)
+		
+		\item
+		\textit{room}(
+		\underline{room\_id},
+		room\_number,
+		capacity
+		)
+		
+		\item
+		\textit{equipment}(
+		\underline{equipment\_id},
+		name
+		)
+		
+		\item
+		\textit{reservation}(
+		\underline{reservation\_id},
+		date,
+		start\_time,
+		end\_time,
+		\textit{student\_id},
+		\textit{room\_id}
+		)
+		
+		\item
+		\textit{room\_equipment}(
+		\underline{\textit{room\_id}, \textit{equipment\_id}}
+		)
+		
+	\end{itemize}
+	
+	\textbf{Normalisation.}
+	Every non-key attribute depends only on the key of its table, and
+	there are no transitive dependencies between non-key attributes.
+	
+	Student information is stored only in \textit{student}, room
+	information only in \textit{room}, and equipment information only in
+	\textit{equipment}. Reservations reference students and rooms by
+	their keys instead of duplicating their data.
+	
+	The N:M relationship between rooms and equipment is represented by
+	the separate \textit{room\_equipment} relation.
+	
+	The schema is therefore in 3NF.
+	
+	
+	% =========================================================
+	% 3 DATABASE
+	% =========================================================
+	
+	\section{Database (PostgreSQL)}
+	
+	The schema and seed data are created by SQL init scripts that
+	PostgreSQL runs when the database is initially created.
+	
+	The PostgreSQL service uses version 16 and stores its data in the
+	Docker volume \texttt{pg\_data}.
+	
+	\begin{lstlisting}[language=SQL,
+		caption={schema.sql (excerpt) -- student, room and equipment}]
+		CREATE TABLE student (
+		student_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+		name VARCHAR(120) NOT NULL,
+		email VARCHAR(200) NOT NULL UNIQUE
+		);
+		
+		CREATE TABLE room (
+		room_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+		room_number VARCHAR(20) NOT NULL UNIQUE,
+		capacity INTEGER NOT NULL CHECK (capacity > 0)
+		);
+		
+		CREATE TABLE equipment (
+		equipment_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+		name VARCHAR(100) NOT NULL UNIQUE
+		);
+	\end{lstlisting}
+	
+	
+	\begin{lstlisting}[language=SQL,
+		caption={schema.sql (excerpt) -- reservation}]
+		CREATE TABLE reservation (
+		reservation_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+		date DATE NOT NULL,
+		start_time TIME NOT NULL,
+		end_time TIME NOT NULL,
+		student_id INTEGER NOT NULL,
+		room_id INTEGER NOT NULL,
+		
+		CHECK (end_time > start_time),
+		
+		FOREIGN KEY (student_id)
+		REFERENCES student (student_id)
+		ON DELETE RESTRICT
+		ON UPDATE CASCADE,
+		
+		FOREIGN KEY (room_id)
+		REFERENCES room (room_id)
+		ON DELETE RESTRICT
+		ON UPDATE CASCADE
+		);
+	\end{lstlisting}
+	
+	
+	\begin{lstlisting}[language=SQL,
+		caption={schema.sql (excerpt) -- room equipment}]
+		CREATE TABLE room_equipment (
+		room_id INTEGER NOT NULL,
+		equipment_id INTEGER NOT NULL,
+		
+		PRIMARY KEY (room_id, equipment_id),
+		
+		FOREIGN KEY (room_id)
+		REFERENCES room (room_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		
+		FOREIGN KEY (equipment_id)
+		REFERENCES equipment (equipment_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		);
+	\end{lstlisting}
+	
+	The \texttt{student} table stores four initial students. The
+	\texttt{room} table contains four study rooms with capacities 4, 6,
+	8 and 12.
+	
+	The equipment table contains Projector, Whiteboard, Monitor and
+	Video Conference.
+	
+	The seed data also creates room-equipment assignments and four
+	initial reservations.
+	
+	
+	% =========================================================
+	% 4 REST API
+	% =========================================================
+	
+	\section{REST API (FastAPI)}
+	
+	The API is the only component that talks to the database. Read
+	endpoints retrieve information from PostgreSQL, while the write
+	endpoint requires the header \texttt{X-API-Key}.
+	
+	\begin{center}
+		\begin{tabular}{llll}
+			\toprule
+			\textbf{Method} & \textbf{Path} & \textbf{Purpose} & \textbf{Key}\\
+			\midrule
+			GET  & \texttt{/} &
+			API status &
+			-- \\
+			
+			GET  & \texttt{/rooms} &
+			list study rooms &
+			-- \\
+			
+			GET  & \texttt{/reservations} &
+			reservations + JOIN &
+			-- \\
+			
+			POST & \texttt{/reservations} &
+			create reservation &
+			yes \\
+			
+			GET & \texttt{/rooms/usage} &
+			room usage (JOIN + agg.) &
+			-- \\
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	The \texttt{/reservations} endpoint demonstrates a JOIN between
+	reservation, student and room.
+	
+	The \texttt{/rooms/usage} endpoint demonstrates a JOIN combined
+	with an aggregation. It counts the reservations belonging to each
+	room.
+	
+	\begin{lstlisting}[language=SQL,
+		caption={Query behind GET /rooms/usage (JOIN + aggregation)}]
+		SELECT
+		ro.room_id,
+		ro.room_number,
+		ro.capacity,
+		COUNT(r.reservation_id) AS reservation_count
+		FROM room AS ro
+		LEFT JOIN reservation AS r
+		ON ro.room_id = r.room_id
+		GROUP BY
+		ro.room_id,
+		ro.room_number,
+		ro.capacity
+		ORDER BY ro.room_id;
+	\end{lstlisting}
+	
+	The write path is guarded by a dependency that checks the API key.
+	
+	\begin{lstlisting}[language=Python,
+		caption={API-key guard}]
+		def verify_api_key(x_api_key: str = Header(...)):
+		if x_api_key != ENV["API_KEY"]:
+		raise HTTPException(
+		status_code=401,
+		detail="Invalid API key",
+		)
+	\end{lstlisting}
+	
+	The reservation creation endpoint uses this dependency:
+	
+	\begin{lstlisting}[language=Python,
+		caption={Protected POST /reservations}]
+		@app.post("/reservations", status_code=201)
+		def create_reservation(
+		reservation: ReservationCreate,
+		_: None = Depends(verify_api_key),
+		):
+		...
+	\end{lstlisting}
+	
+	Before inserting a reservation, the backend checks whether another
+	reservation for the same room and date overlaps with the requested
+	time interval.
+	
+	If an overlap exists, the API returns HTTP 409:
+	
+	\begin{lstlisting}[language=Python,
+		caption={Reservation conflict}]
+		raise HTTPException(
+		status_code=409,
+		detail="Room is already reserved for this time period",
+		)
+	\end{lstlisting}
+	
+	
+	% =========================================================
+	% 5 FRONTEND
+	% =========================================================
+	
+	\section{Frontend (tkinter, packaged as .deb)}
+	
+	The frontend is a small tkinter application with screens for
+	available study rooms, new reservations, existing reservations and
+	room usage.
+	
+	It never touches the database directly -- it only calls the API.
+	
+	At startup a connection dialog asks for the API URL and the
+	X-API-Key.
+	
+	The current default API URL is:
+	
+	\begin{lstlisting}
+		http://127.0.0.1:8000
+	\end{lstlisting}
+	
+	After a successful connection, the frontend displays the available
+	study rooms.
+	
+	The main screen provides four actions:
+	
+	\begin{itemize}[leftmargin=6mm,itemsep=2pt]
+		\item New Reservation
+		\item View Reservations
+		\item Room Usage
+		\item Disconnect
+	\end{itemize}
+	
+	\subsection*{New Reservation}
+	
+	The reservation form contains:
+	
+	\begin{itemize}[leftmargin=6mm,itemsep=2pt]
+		\item Date
+		\item Start time
+		\item End time
+		\item Student ID
+		\item Study room
+	\end{itemize}
+	
+	The frontend sends the values to:
+	
+	\begin{lstlisting}
+		POST /reservations
+	\end{lstlisting}
+	
+	A successful request displays the generated reservation ID.
+	
+	If the backend returns HTTP 409, the frontend displays a warning
+	that the room is already reserved for the selected time period.
+	
+	\subsection*{View Reservations}
+	
+	The reservation view calls:
+	
+	\begin{lstlisting}
+		GET /reservations
+	\end{lstlisting}
+	
+	The returned data is displayed in a table containing:
+	
+	\begin{itemize}[leftmargin=6mm,itemsep=2pt]
+		\item reservation ID
+		\item date
+		\item start time
+		\item end time
+		\item student
+		\item room
+	\end{itemize}
+	
+	\subsection*{Room Usage}
+	
+	The room usage view calls:
+	
+	\begin{lstlisting}
+		GET /rooms/usage
+	\end{lstlisting}
+	
+	The table displays the room ID, room number, capacity and number of
+	reservations.
+	
+	\subsection*{Packaging}
+	
+	The frontend source contains a PyInstaller specification file
+	\texttt{main.spec}. The current project also contains generated
+	frontend files in the \texttt{build} and \texttt{dist} directories.
+	
+	For the final deployment, the frontend is packaged as a Debian
+	package (\texttt{.deb}) so that it can be installed independently
+	from the Docker Compose backend.
+	
+	
+	% =========================================================
+	% 6 OPERATION AND DEPLOYMENT
+	% =========================================================
+	
+	\section{Operation and deployment}
+	
+	The backend runs as two containers, orchestrated by Docker Compose:
+	a PostgreSQL database container and a FastAPI API container.
+	
+	Credentials and configuration values are supplied through the
+	\texttt{.env} file.
+	
+	\begin{lstlisting}[caption={docker-compose.yml (excerpt)}]
+		services:
+		
+		postgres:
+		
+		image: postgres:16
+		
+		restart: unless-stopped
+		
+		environment:
+		POSTGRES_USER: ${POSTGRES_USER}
+		POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+		POSTGRES_DB: ${POSTGRES_DB}
+		
+		volumes:
+		- pg_data:/var/lib/postgresql/data
+		- ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+		- ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+		
+		healthcheck:
+		test:
+		[
+		"CMD-SHELL",
+		"pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+		]
+		interval: 5s
+		timeout: 5s
+		retries: 5
+		
+		api:
+		
+		build: ./backend
+		
+		restart: unless-stopped
+		
+		env_file:
+		- .env
+		
+		environment:
+		DB_HOST: postgres
+		DB_NAME: ${POSTGRES_DB}
+		DB_USER: ${POSTGRES_USER}
+		DB_PASSWORD: ${POSTGRES_PASSWORD}
+		API_KEY: ${API_KEY}
+		
+		ports:
+		- "8000:8000"
+		
+		depends_on:
+		postgres:
+		condition: service_healthy
+		
+		volumes:
+		pg_data:
+	\end{lstlisting}
+	
+	The PostgreSQL container uses the named volume
+	\texttt{pg\_data} to persist the database data.
+	
+	The API container is built from the \texttt{backend} directory and
+	is started only after the PostgreSQL health check succeeds.
+	
+	\subsection*{Deployment steps}
+	
+	\begin{enumerate}[leftmargin=7mm,itemsep=3pt]
+		
+		\item
+		Start the database and API:
+		
+		\begin{lstlisting}
+			docker compose up -d
+		\end{lstlisting}
+		
+		\item
+		Check the running containers:
+		
+		\begin{lstlisting}
+			docker compose ps
+		\end{lstlisting}
+		
+		\item
+		Install the frontend Debian package:
+		
+		\begin{lstlisting}
+			sudo dpkg -i study-room-reservation_0.1.0_amd64.deb
+		\end{lstlisting}
+		
+		\item
+		Launch the frontend.
+		
+		\item
+		Enter the API URL and the X-API-Key in the connection dialog.
+		
+	\end{enumerate}
+	
+	The FastAPI documentation can be accessed locally at:
+	
+	\begin{lstlisting}
+		http://127.0.0.1:8000/docs
+	\end{lstlisting}
+	
+	
+	% =========================================================
+	% 7 REFLECTION
+	% =========================================================
+	
+	\section{Reflection}
+	
+	The separation into database, API and frontend provides a clear
+	architecture for the Study Room Reservation System.
+	
+	The database stores the application data and enforces important
+	integrity constraints. The API provides the interface between the
+	database and the graphical application.
+	
+	The JOIN query used by the reservation endpoint demonstrates how
+	related information can be retrieved without duplicating student and
+	room data. The aggregation query used by the room usage endpoint
+	demonstrates how reservation counts can be calculated directly in
+	SQL.
+	
+	The reservation conflict check was an important part of the
+	application because two overlapping reservations must not be
+	created for the same room.
+	
+	Docker Compose simplifies the operation of the backend by starting
+	PostgreSQL and FastAPI together. The health check ensures that the
+	API waits for the database to become available.
+	
+	The tkinter frontend provides the user with a simple interface for
+	connecting to the API, viewing rooms and reservations, creating new
+	reservations and viewing room usage.
+	
+	
+	% =========================================================
+	% SOURCES AND REUSE
+	% =========================================================
+	
+	\section*{Sources and reuse}
+	
+	Reused with attribution, as permitted:
+	
+	\begin{itemize}[leftmargin=6mm,itemsep=3pt]
+		
+		\item
+		API-key guard and REST API structure -- adapted from the
+		DBMS course examples and DBMS project exercises.
+		
+		\item
+		Docker Compose structure with PostgreSQL and FastAPI -- based
+		on the DBMS Docker and FastAPI lectures.
+		
+		\item
+		tkinter connection dialog and Treeview-based frontend layout --
+		based on the frontend concepts presented in the DBMS lectures.
+		
+		\item
+		PyInstaller and Debian packaging approach -- based on the
+		course requirements for the frontend deployment.
+		
+	\end{itemize}
+	
+	The database schema, seed data and Study Room Reservation System
+	application-specific functionality were developed for this project.
+	
+\end{document}
